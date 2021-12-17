@@ -1,9 +1,27 @@
 const main = document.querySelector('.main');
 const mode = document.getElementById('mode');
 const todoInput = document.querySelector('#todo-input');
-const todoItem = document.querySelectorAll('.todo-item');
+const addTodoItem = document.getElementById('add-todo-item');
+const todoListWrapper = document.querySelector('.todo-list-wrapper');
 
-mode.addEventListener('click', darkMode);
+function addTodo() {
+    console.log(todoInput.value);
+    const todoItem = document.createElement('div');
+    todoItem.classList.add('todo-item');
+    todoListWrapper.appendChild(todoItem);
+
+    const todo = document.createElement('p');
+    todo.innerHTML = '<i class="bi bi-circle pe-2 check"></i>' + todoInput.value;
+    todoItem.appendChild(todo);
+
+    const iconCross = document.createElement('i');
+    iconCross.classList.add('bi');
+    iconCross.classList.add('bi-x-lg');
+    todoItem.appendChild(iconCross);
+
+    todoInput.value = '';
+}
+
 
 function darkMode() {
     if(main.classList.contains('dark-main')){
@@ -24,3 +42,5 @@ function darkMode() {
     }
 }
 
+mode.addEventListener('click', darkMode);
+addTodoItem.addEventListener('click', addTodo);
