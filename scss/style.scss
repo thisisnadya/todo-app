@@ -30,8 +30,8 @@ body {
         top: 0;
         @media (min-width: 992px) {
             top: 5%;
-            width: 50%;
-            left: 25%;
+            width: 40%;
+            left: 30%;
         }
         .title {
             h1 {
@@ -65,23 +65,47 @@ body {
             }
         }
         .todo-list-wrapper {
-            box-shadow: 5px 10px 18px #888888;
+            height: 350px;
+            overflow: auto;
+            background: transparent;
             .todo-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 background-color: white;
                 width: 100%;
-                padding: 14px 16px;
+                height: 45px;
                 border: none;
                 outline: none;
                 border-radius: 5px;
                 color: $very-dark-blue;
                 border-bottom: 1px solid $dark-grayish-blue;
+                box-shadow: 2px 2px 10px #888888;
+                position: relative;
                 i {
                     cursor: pointer;
-                    font-size: 18px;
+                    font-size: 20px;
+                    color: #50CB93;
                 }
+                i.check {
+                    position: absolute;
+                    padding-left:5px;
+                    left: 5px;
+                    top:10px;
+                }
+                i.delete {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                }
+                p.text {
+                    position: absolute;
+                    top: 10px;
+                    left: 40px;
+                }
+            }
+        }
+        .todo-list-wrapper.theme {
+            .todo-item {
+                background-color: $very-dark-desaturated-blue !important;
+                color: white !important;
             }
         }
     }
@@ -93,4 +117,8 @@ body {
 .dark {
     background-color: $very-dark-desaturated-blue !important;
     color: white !important;
+}
+.lineThrough{
+    text-decoration: line-through;
+    color : #ccc;
 }

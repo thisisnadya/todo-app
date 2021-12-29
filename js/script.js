@@ -3,44 +3,99 @@ const mode = document.getElementById('mode');
 const todoInput = document.querySelector('#todo-input');
 const addTodoItem = document.getElementById('add-todo-item');
 const todoListWrapper = document.querySelector('.todo-list-wrapper');
+const todoItems = document.querySelectorAll('.todo-item');
+const CHECK = "bi-check-circle-fill";
+const UNCHECK = "bi-circle";
+const lineThrough = "lineThrough";
+let LIST = [];
+let id = 0;
 
-function addTodo() {
-    console.log(todoInput.value);
-    const todoItem = document.createElement('div');
-    todoItem.classList.add('todo-item');
-    todoListWrapper.appendChild(todoItem);
 
-    const todo = document.createElement('p');
-    todo.innerHTML = '<i class="bi bi-circle pe-2 check"></i>' + todoInput.value;
-    todoItem.appendChild(todo);
-
-    const iconCross = document.createElement('i');
-    iconCross.classList.add('bi');
-    iconCross.classList.add('bi-x-lg');
-    todoItem.appendChild(iconCross);
-
+function addTodo(todo,id,done,trash) {
+    if(trash){return;}
+    const DONE = done ? CHECK : UNCHECK;
+    const item = `<div class="todo-item">
+                    <i class="bi ${DONE} pe-2 check" job="complete" id="${id}"></i>
+                    <p class="text">${todo}</p>
+                    <i class="bi bi-x-lg delete" job="delete" id="${id}"></i>
+                </div>`;
+    const position = 'beforeend';
+    let itemTemp = document.createElement('div');
+    itemTemp.innerHTML = item;
+    todoListWrapper.insertAdjacentElement(position, itemTemp);
     todoInput.value = '';
 }
 
+function completeTodo(element){
+    element.classList.toggle(CHECK);
+    element.classList.toggle(UNCHECK);
+    element.parentNode.querySelector('.text').classList.toggle(lineThrough);
+
+    LIST[element.id].done = LIST[element.id].done ? false : true;
+}
+
+function removeTodo(element){
+    element.parentNode.parentNode.removeChild(element.parentNode);
+
+    LIST[element.id].trash = true;
+}
 
 function darkMode() {
     if(main.classList.contains('dark-main')){
         main.classList.remove('dark-main');
         mode.src = '/images/icon-moon.svg';
         todoInput.classList.remove('dark');
-        todoItem.forEach(item => {
-            item.classList.remove('dark');
-        });
+        todoListWrapper.classList.remove('theme');
     }
     else {
         main.classList.add('dark-main');
         mode.src = '/images/icon-sun.svg';
         todoInput.classList.add('dark');
-        todoItem.forEach(item => {
-            item.classList.add('dark');
-        });
+        todoListWrapper.classList.add('theme');
     }
 }
 
 mode.addEventListener('click', darkMode);
-addTodoItem.addEventListener('click', addTodo);
+addTodoItem.addEventListener('click', function(){
+    let todo = todoInput.value;
+    if(todo){
+        addTodo(todo,id,false,false);
+
+        LIST.push({
+            name: todo,
+            id: id,
+            done: false,
+            trash: false
+        });
+        id++;
+    }
+});
+
+document.addEventListener('keyup', function(event){
+    let todoContent = todoInput.value;
+    if(event.key == 'Enter'){
+        if(todoContent){
+            addTodo(todoContent,id,false,false);
+
+            LIST.push({
+                name: todoContent,
+                id: id,
+                done: false,
+                trash: false
+            });
+            id++;
+        }
+    }
+});
+
+todoListWrapper.addEventListener('click', function(event){
+    let element = event.target;
+    let elementJob = element.attributes.job.value;
+
+    if(elementJob == 'complete'){
+        completeTodo(element);
+    }
+    else {
+        removeTodo(element);
+    }
+});

@@ -30,8 +30,8 @@ body {
 @media (min-width: 992px) {
   .main .todo-main {
     top: 5%;
-    width: 50%;
-    left: 25%;
+    width: 40%;
+    left: 30%;
   }
 }
 
@@ -72,33 +72,53 @@ body {
 }
 
 .main .todo-main .todo-list-wrapper {
-  -webkit-box-shadow: 5px 10px 18px #888888;
-          box-shadow: 5px 10px 18px #888888;
+  height: 350px;
+  overflow: auto;
+  background: transparent;
 }
 
 .main .todo-main .todo-list-wrapper .todo-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   background-color: white;
   width: 100%;
-  padding: 14px 16px;
+  height: 45px;
   border: none;
   outline: none;
   border-radius: 5px;
   color: #161722;
   border-bottom: 1px solid #777a92;
+  -webkit-box-shadow: 2px 2px 10px #888888;
+          box-shadow: 2px 2px 10px #888888;
+  position: relative;
 }
 
 .main .todo-main .todo-list-wrapper .todo-item i {
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
+  color: #50CB93;
+}
+
+.main .todo-main .todo-list-wrapper .todo-item i.check {
+  position: absolute;
+  padding-left: 5px;
+  left: 5px;
+  top: 10px;
+}
+
+.main .todo-main .todo-list-wrapper .todo-item i.delete {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.main .todo-main .todo-list-wrapper .todo-item p.text {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+}
+
+.main .todo-main .todo-list-wrapper.theme .todo-item {
+  background-color: #25273c !important;
+  color: white !important;
 }
 
 .dark-main {
@@ -108,5 +128,10 @@ body {
 .dark {
   background-color: #25273c !important;
   color: white !important;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+  color: #ccc;
 }
 /*# sourceMappingURL=style.css.map */
