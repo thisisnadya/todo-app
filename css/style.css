@@ -35,12 +35,19 @@ body {
   }
 }
 
+.main .todo-main .title {
+  position: relative;
+}
+
 .main .todo-main .title h1 {
   font-size: 2rem;
   letter-spacing: 7px;
 }
 
-.main .todo-main .title img {
+.main .todo-main .title .theme {
+  position: absolute;
+  top: 6px;
+  right: 0;
   cursor: pointer;
 }
 

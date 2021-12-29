@@ -34,11 +34,15 @@ body {
             left: 30%;
         }
         .title {
+            position: relative;
             h1 {
                 font-size: 2rem;
                 letter-spacing: 7px;
             }
-            img {
+            .theme {
+                position: absolute;
+                top: 6px;
+                right: 0;
                 cursor: pointer;
             }
         }

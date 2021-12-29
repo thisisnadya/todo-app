@@ -7,9 +7,26 @@ const todoItems = document.querySelectorAll('.todo-item');
 const CHECK = "bi-check-circle-fill";
 const UNCHECK = "bi-circle";
 const lineThrough = "lineThrough";
-let LIST = [];
-let id = 0;
+let LIST, id;
 
+// get item from local storage
+let data = localStorage.getItem("MyTODO");
+
+if(data){
+    LIST = JSON.parse(data);
+    id = LIST.length;
+    loadList(LIST);
+}
+else {
+    LIST = [];
+    id = 0;
+}
+
+function loadList(LIST){
+    LIST.forEach(item => {
+        addTodo(item.name, item.id, item.done, item.trash);
+    });
+}
 
 function addTodo(todo,id,done,trash) {
     if(trash){return;}
@@ -67,6 +84,7 @@ addTodoItem.addEventListener('click', function(){
             done: false,
             trash: false
         });
+        localStorage.setItem("MyTODO", JSON.stringify(LIST));
         id++;
     }
 });
@@ -83,6 +101,8 @@ document.addEventListener('keyup', function(event){
                 done: false,
                 trash: false
             });
+
+            localStorage.setItem("MyTODO", JSON.stringify(LIST));
             id++;
         }
     }
@@ -98,4 +118,7 @@ todoListWrapper.addEventListener('click', function(event){
     else {
         removeTodo(element);
     }
+
+    // set item to local storage
+    localStorage.setItem("MyTODO", JSON.stringify(LIST));
 });
