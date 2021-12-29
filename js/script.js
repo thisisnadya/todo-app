@@ -11,6 +11,7 @@ let LIST, id;
 
 // get item from local storage
 let data = localStorage.getItem("MyTODO");
+let switchTheme = localStorage.getItem("MyTheme");
 
 if(data){
     LIST = JSON.parse(data);
@@ -26,6 +27,10 @@ function loadList(LIST){
     LIST.forEach(item => {
         addTodo(item.name, item.id, item.done, item.trash);
     });
+}
+
+if(switchTheme == 'darkmode'){
+    enableDarkMode();
 }
 
 function addTodo(todo,id,done,trash) {
@@ -57,22 +62,30 @@ function removeTodo(element){
     LIST[element.id].trash = true;
 }
 
-function darkMode() {
-    if(main.classList.contains('dark-main')){
-        main.classList.remove('dark-main');
-        mode.src = '/images/icon-moon.svg';
-        todoInput.classList.remove('dark');
-        todoListWrapper.classList.remove('theme');
-    }
-    else {
-        main.classList.add('dark-main');
-        mode.src = '/images/icon-sun.svg';
-        todoInput.classList.add('dark');
-        todoListWrapper.classList.add('theme');
-    }
+function enableDarkMode() {
+    main.classList.add('dark');
+    mode.src = "images/icon-sun.svg";
+    localStorage.setItem('MyTheme', 'darkmode');
 }
 
-mode.addEventListener('click', darkMode);
+function disableDarkMode(){
+    main.classList.remove('dark');
+    mode.src = "images/icon-moon.svg";
+
+    localStorage.setItem('MyTheme', null);
+}
+
+mode.addEventListener('click', function(){
+    switchTheme = localStorage.getItem('MyTheme');
+
+    if(switchTheme !== 'darkmode'){
+        enableDarkMode();
+    }
+    else {
+        disableDarkMode();
+    }
+});
+
 addTodoItem.addEventListener('click', function(){
     let todo = todoInput.value;
     if(todo){
