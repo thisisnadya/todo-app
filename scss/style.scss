@@ -7,6 +7,7 @@
     --dark-grayish-blue: hsl(234, 11%, 52%);
     --text-color: hsl(235, 21%, 11%);
     --shadow: hsl(234, 39%, 85%);
+    --text-active: hsl(220, 98%, 61%);
 }
 
 .dark {
@@ -14,6 +15,7 @@
     --bg-todo: hsl(235, 24%, 19%);
     --text-color: white;
     --shadow: hsl(234, 25%, 22%);
+    --text-active: hsl(220, 98%, 61%);
 }
 body {
     font-family: 'Josefin Sans', sans-serif;
@@ -114,6 +116,18 @@ body {
                     top: 15px;
                     left: 40px;
                 }
+            }
+        }
+    }
+    .filter-todo {
+        background-color: var(--bg-todo);
+        height: 45px;
+        border-radius: 5px;
+        border: 1px solid #aeaeae;
+        .filter-action {
+            display: flex;
+            p {
+                padding: 0px 5px;
             }
         }
     }

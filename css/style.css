@@ -5,6 +5,7 @@
   --dark-grayish-blue: hsl(234, 11%, 52%);
   --text-color: hsl(235, 21%, 11%);
   --shadow: hsl(234, 39%, 85%);
+  --text-active: hsl(220, 98%, 61%);
 }
 
 .dark {
@@ -12,6 +13,7 @@
   --bg-todo: hsl(235, 24%, 19%);
   --text-color: white;
   --shadow: hsl(234, 25%, 22%);
+  --text-active: hsl(220, 98%, 61%);
 }
 
 body {
@@ -139,6 +141,23 @@ body {
   position: absolute;
   top: 15px;
   left: 40px;
+}
+
+.main .filter-todo {
+  background-color: var(--bg-todo);
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #aeaeae;
+}
+
+.main .filter-todo .filter-action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .filter-todo .filter-action p {
+  padding: 0px 5px;
 }
 
 .lineThrough {
