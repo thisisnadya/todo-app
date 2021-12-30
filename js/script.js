@@ -4,6 +4,7 @@ const todoInput = document.querySelector('#todo-input');
 const addTodoItem = document.getElementById('add-todo-item');
 const todoListWrapper = document.querySelector('.todo-list-wrapper');
 const todoItems = document.querySelectorAll('.todo-item');
+const clear = document.getElementById('clear');
 const CHECK = "bi-check-circle-fill";
 const UNCHECK = "bi-circle";
 const lineThrough = "lineThrough";
@@ -28,6 +29,12 @@ function loadList(LIST){
         addTodo(item.name, item.id, item.done, item.trash);
     });
 }
+
+//clear local storage
+clear.addEventListener('click', function(){
+    localStorage.clear();
+    location.reload();
+}); 
 
 if(switchTheme == 'darkmode'){
     enableDarkMode();
@@ -135,3 +142,5 @@ todoListWrapper.addEventListener('click', function(event){
     // set item to local storage
     localStorage.setItem("MyTODO", JSON.stringify(LIST));
 });
+
+

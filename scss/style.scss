@@ -8,6 +8,8 @@
     --text-color: hsl(235, 21%, 11%);
     --shadow: hsl(234, 39%, 85%);
     --text-active: hsl(220, 98%, 61%);
+    --text-action: hsl(236, 9%, 61%);
+    --text-action-hover:  hsl(235, 19%, 35%);
 }
 
 .dark {
@@ -16,6 +18,8 @@
     --text-color: white;
     --shadow: hsl(234, 25%, 22%);
     --text-active: hsl(220, 98%, 61%);
+    --text-action: hsl(236, 9%, 61%);
+    --text-action-hover: white;
 }
 body {
     font-family: 'Josefin Sans', sans-serif;
@@ -124,10 +128,21 @@ body {
         height: 45px;
         border-radius: 5px;
         border: 1px solid #aeaeae;
+        color: var(--text-action);
+        .remain, .clear {
+            cursor: pointer;
+            &:hover {
+                color: var(--text-action-hover);
+            }
+        }
         .filter-action {
             display: flex;
             p {
                 padding: 0px 5px;
+                cursor: pointer;
+                &:hover {
+                    color: var(--text-action-hover);
+                }
             }
         }
     }
