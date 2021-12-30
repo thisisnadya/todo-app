@@ -153,6 +153,7 @@ body {
   border-radius: 5px;
   border: 1px solid #aeaeae;
   color: var(--text-action);
+  visibility: hidden;
 }
 
 .main .filter-todo .remain, .main .filter-todo .clear {

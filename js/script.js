@@ -4,6 +4,8 @@ const todoInput = document.querySelector('#todo-input');
 const addTodoItem = document.getElementById('add-todo-item');
 const todoListWrapper = document.querySelector('.todo-list-wrapper');
 const todoItems = document.querySelectorAll('.todo-item');
+const filterTodo = document.querySelector('.filter-todo');
+const remainItems = document.querySelector('.remain-items');
 const clear = document.getElementById('clear');
 const CHECK = "bi-check-circle-fill";
 const UNCHECK = "bi-circle";
@@ -52,6 +54,8 @@ function addTodo(todo,id,done,trash) {
     let itemTemp = document.createElement('div');
     itemTemp.innerHTML = item;
     todoListWrapper.insertAdjacentElement(position, itemTemp);
+    filterTodo.style.visibility = 'visible';
+    remainItems.innerText = `${todoListWrapper.childElementCount} items left`;
     todoInput.value = '';
 }
 

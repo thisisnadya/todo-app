@@ -129,6 +129,7 @@ body {
         border-radius: 5px;
         border: 1px solid #aeaeae;
         color: var(--text-action);
+        visibility: hidden;
         .remain, .clear {
             cursor: pointer;
             &:hover {
